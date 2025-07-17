@@ -16,6 +16,7 @@ class _InputPageState extends State<InputPage> {
 
   int height = 180;
   int weight = 60;
+  int age = 19;
 
   // Color maleCardColour = inactiveColour;
   // Color femaleCardColour = inactiveColour;
@@ -103,6 +104,8 @@ class _InputPageState extends State<InputPage> {
                   Text("HEIGHT", style: kLabelStyle),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(height.toString(), style: kNumberTextStyle),
                       Text("cm", style: kLabelStyle),
@@ -147,13 +150,74 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         Text("WEIGHT", style: kLabelStyle),
                         Text(weight.toString(), style: kNumberTextStyle),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+
+                            SizedBox(width: 10),
+
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     color: kActiveCardColour,
                   ),
                 ),
 
-                Expanded(child: UseableCard(color: kActiveCardColour)),
+                Expanded(
+                  child: UseableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("AGE", style: kLabelStyle),
+                        Text(age.toString(), style: kNumberTextStyle),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+
+                            SizedBox(width: 10),
+
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    color: kActiveCardColour,
+                  ),
+                ),
               ],
             ),
           ),
@@ -164,6 +228,25 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({super.key, this.icon, required this.onPressed});
+
+  final IconData? icon;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon, color: Colors.white),
+      elevation: 0.0,
+      constraints: BoxConstraints.tightFor(height: 56, width: 56),
+      fillColor: Color(0xFF4C4F5E),
+      shape: CircleBorder(),
+      onPressed: onPressed,
     );
   }
 }
