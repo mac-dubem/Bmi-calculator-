@@ -1,9 +1,11 @@
-import 'package:bmi_calculator/result_page.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'cards_content.dart';
-import 'useable_card.dart';
-import 'constants.dart';
+import '../Components/cards_content.dart';
+import '../Components/useable_card.dart';
+import '../constants.dart';
+import '../Components/buttom_red_button.dart';
+import '../Components/round_icon_button.dart';
 
 enum Gender { Male, Female }
 
@@ -211,26 +213,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          ButtomRedButton(
+            buttonText: "CALCUATE",
+            navigate: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResultPage(),
-                  ));
+                context,
+                MaterialPageRoute(builder: (context) => ResultPage()),
+              );
             },
-            child: Container(
-              child: Center(
-                child: Text(
-                  "CALCULATE",
-                  style: kBottomButtonStyle,
-                ),
-              ),
-              padding: EdgeInsets.only(bottom: 20),
-              color: kBottomContainterColour,
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
           ),
         ],
       ),
@@ -238,21 +228,6 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({super.key, this.icon, required this.onPressed});
 
-  final IconData? icon;
-  final void Function() onPressed;
 
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon, color: Colors.white),
-      elevation: 0.0,
-      constraints: BoxConstraints.tightFor(height: 56, width: 56),
-      fillColor: Color(0xFF4C4F5E),
-      shape: CircleBorder(),
-      onPressed: onPressed,
-    );
-  }
-}
+
