@@ -12,3 +12,23 @@ const TextStyle kNumberTextStyle = TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.w900,
 );
+
+const TextStyle kBottomButtonStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kResultTopBodyStyle = TextStyle(
+  color: Colors.green,
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kBMIResultStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 100,
+  fontWeight: FontWeight.w900,
+);
+
+const TextStyle kResultBodyStyle = TextStyle(color: Colors.white, fontSize: 20);

@@ -1,8 +1,11 @@
+import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'cards_content.dart';
-import 'useable_card.dart';
-import 'constants.dart';
+import '../Components/cards_content.dart';
+import '../Components/useable_card.dart';
+import '../constants.dart';
+import '../Components/buttom_red_button.dart';
+import '../Components/round_icon_button.dart';
 
 enum Gender { Male, Female }
 
@@ -74,7 +77,6 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: UseableCard(
                     onPress: () {
@@ -87,7 +89,6 @@ class _InputPageState extends State<InputPage> {
                         : kInactiveCardColour,
                     cardChild: CardsContent(
                       icons: FontAwesomeIcons.venus,
-
                       label: "FEMALE",
                     ),
                   ),
@@ -95,7 +96,6 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-
           Expanded(
             child: UseableCard(
               cardChild: Column(
@@ -138,7 +138,6 @@ class _InputPageState extends State<InputPage> {
               color: kActiveCardColour,
             ),
           ),
-
           Expanded(
             child: Row(
               // spacing: 20,
@@ -150,7 +149,6 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         Text("WEIGHT", style: kLabelStyle),
                         Text(weight.toString(), style: kNumberTextStyle),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -162,9 +160,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-
                             SizedBox(width: 10),
-
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
@@ -180,7 +176,6 @@ class _InputPageState extends State<InputPage> {
                     color: kActiveCardColour,
                   ),
                 ),
-
                 Expanded(
                   child: UseableCard(
                     cardChild: Column(
@@ -188,7 +183,6 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         Text("AGE", style: kLabelStyle),
                         Text(age.toString(), style: kNumberTextStyle),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -200,9 +194,7 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-
                             SizedBox(width: 10),
-
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
@@ -221,10 +213,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainterColour,
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          ButtomRedButton(
+            buttonText: "CALCUATE",
+            navigate: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultPage()),
+              );
+            },
           ),
         ],
       ),
@@ -232,21 +228,6 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({super.key, this.icon, required this.onPressed});
 
-  final IconData? icon;
-  final void Function() onPressed;
 
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon, color: Colors.white),
-      elevation: 0.0,
-      constraints: BoxConstraints.tightFor(height: 56, width: 56),
-      fillColor: Color(0xFF4C4F5E),
-      shape: CircleBorder(),
-      onPressed: onPressed,
-    );
-  }
-}
+
