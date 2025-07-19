@@ -6,6 +6,7 @@ import '../Components/useable_card.dart';
 import '../constants.dart';
 import '../Components/buttom_red_button.dart';
 import '../Components/round_icon_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum Gender { Male, Female }
 
@@ -216,9 +217,18 @@ class _InputPageState extends State<InputPage> {
           ButtomRedButton(
             buttonText: "CALCUATE",
             navigate: () {
+              CalculatorBrain calc = CalculatorBrain(
+                heigth: height,
+                weight: weight,
+              );
+
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultPage()),
+                MaterialPageRoute(builder: (context) => ResultPage(
+                  bmiResult: calc.calculateBMI(),
+                  resultText: calc.getResult(),
+                  interpretation: calc.getInterpetation(),
+                )),
               );
             },
           ),
@@ -227,7 +237,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-
-
-
